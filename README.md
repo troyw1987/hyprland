@@ -1,11 +1,13 @@
 # Installation:
 Start with a minimal Arch install with yay.
 
-Git clone this repo in /Opt and `chmod -R user:user /Opt/hyprlandsetup` 
+make a `~/git` folder or similar with user permissions and clone it this repo in there.
 
-Or as I'd recommend: make a `~/git` folder and clone it in there
+Cd into this folder and run `./set-hypr` to follow the install.
 
-Run `./set-hypr` and follow the install.
+While setting the terminal to ZSH, you must type `exit` afterwards to continue the install.
+
+While copying the config, greetd may enable and 
 
 # Post Installation:
 
@@ -14,15 +16,14 @@ You may have to reconfigure hyprland configuration for your monitors.
 # Notable things which get installed:
 
 ```
-Wofi(App launcher) [SUPER+R]
+ULauncher(App launcher) [SUPER+R]
 Kitty(Terminal) [Super+Enter]
-Vencord(Discord) [Launched via Wofi]
+Vencord(Discord) [Launched via Ulauncher]
 Btop(Task Manager) [Launched via Kitty]
 
-
-Mako(Desktop Notifications)
-Waybar(Status bar at top of screen)
-Swaylock(Lock Screen)
+SwayNcDesktop Notifications)
+Waybar(Status bar)
+Hyprlock/HyperIdle(lockscreen + idlelock)
 ```
 
 # Notable Keybinds:
@@ -31,15 +32,17 @@ General:
 ```
 Super + R -> App Launcher
 Super + Enter -> Terminal
-Super + Z -> Mutes Volume and locks screen
-Super + S -> Opens special workspaces
+Super + S -> Opens special workspace
+Super + Shift + S -> Moves window into special workspace
 Super + 1-0 -> Goes to each workspace
 ```
 
 Control keys which are binded:
 ```
 Printscreen puts screen selection into clipboard
-Media Control Function keys
-Volume Control keys
-Brightness Control keys
+Media Controls
+Volume/Mute Contros
+Brightness Controls
+Keyboard Backlight
+Favorites Key opens notifications
 ```

@@ -7,8 +7,6 @@ Cd into this folder and run `./set-hypr` to follow the install.
 
 While setting the terminal to ZSH, you must type `exit` afterwards to continue the install.
 
-While copying the config, greetd may enable and 
-
 # Post Installation:
 
 You may have to reconfigure hyprland configuration for your monitors.

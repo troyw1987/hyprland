@@ -1,0 +1,164 @@
+#!/bin/bash
+
+# The follwoing will attempt to install all needed packages to run Hyprland
+# This is a quick and dirty script there are no error checking
+# This script is meant to run on a clean fresh system
+#
+# Below is a list of the packages that would be installed
+# TODO: ADD THE FUCKING LIST
+
+BPurple='\033[1;35m'
+BRed='\033[1;31m'
+NC='\033[0m'
+#### Check for yay ####
+ISYAY=/sbin/yay
+if [ -f "$ISYAY" ]; then
+  printf "${BPurple}yay was located, moving on.${NC}\n"
+else
+  printf "${BRed}yay was not located.${NC}\n"
+
+  read -n1 -rep "Would you like to install yay to continue this install? y/n: " YAYS
+  if [[ $YAYS == "Y" || $YAYS == y ]]; then
+    printf "${BPurple}Creating ~/git/yay and installing yay.${NC}"
+    mkdir ~/git
+    cd ~/git
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -sic
+  else
+    printf "${BRed}\nUnable to continue install without yay.${NC}\n"
+    exit
+  fi
+fi
+
+### Install all of the above pacakges ####
+read -n1 -rep 'Would you like to install the packages? y/n: ' INST
+if [[ $INST == "Y" || $INST == "y" ]]; then
+  yay -Syu
+  yay -S --noconfirm hyprland kitty waybar \
+    ulauncher swaync nemo \
+    polkit-gnome python-requests \
+    grim slurp pamixer brightnessctl gvfs \
+    bluez bluez-utils lxappearance xfce4-settings \
+    xdg-desktop-portal-hyprland \
+    vesktop-bin ttf-vista-fonts btop \
+    neovim zsh ripgrep \
+    jq stow npm \
+    unzip noto-fonts noto-fonts-cjk \
+    noto-fonts-emoji noto-fonts-extra \
+    ttf-inconsolata-nerd ttf-jetbrains-mono-nerd cliphist mercury-browser-bin \
+    apple_cursor spicetify-cli \
+    wttrbar geoip hypridle \
+    hyprlock swaybg papirus-icon-theme \
+    tlp zoxide-bin tldr \
+    greetd greetd-tuigreet \
+    zoxide go lsd \
+    rust-analyzer
+
+  printf "${BPurple}Starting the TLP service...${NC}\n"
+  sudo systemctl enable tlp.service
+
+  # Start the bluetooth service
+  printf "${BPurple}Starting the Bluetooth Service...${NC}\n"
+  sudo systemctl enable --now bluetooth.service
+  sleep 2
+
+  # Clean out other portals
+  printf "${BPurple}Cleaning out conflicting xdg portals...${NC}\n"
+  yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+fi
+
+### Set zsh as shell ###
+read -n1 -rep 'Would you like to set your shell to ZSH? y,n: ' ZSH
+if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
+  printf "${BPurple}\nPlease type in 'exit' once ZSH is installed and within the zshell to continue the install.\n${NC}"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+### Copy Config Files ###
+read -n1 -rep 'Would you like to copy config files? y/n: ' CFG
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
+  printf "${BPurple}Copying config files...${NC}\n"
+
+  sudo cp -R ./config/* ~/.config/
+
+  ### Root Directory Changes: ###
+
+  # tlp:
+  printf "${BPurple}\nCopying and enabling TLP${NC}"
+  sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
+  sudo systemctl enable --now tlp.service
+
+  # greetd:
+  printf "${BPurple}\nCopying and enabling Greetd${NC}"
+  sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
+  sudo systemctl enable --now greetd.service
+
+  # grub:
+  printf "${BPurple}\nCopying and enabling Grub${NC}"
+  sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
+  sudo cp ./root/grub/grub /etc/default/grub
+
+  printf "${BPurple}\nRegenerating GRUB:${NC}\n"
+  sudo grub-mkconfig -o /boot/grub/grub.cfg
+  printf "\n"
+
+  ### Userspace/.config Changes: ###
+
+  # zsh:
+  printf "${BPurple}\nCopying .zshrc and zsh theme config${NC}"
+  sudo cp ./config/zsh/themes/heapbytes.zsh-theme ~/.oh-my-zsh/themes
+  sudo cp ./config/zsh/.zshrc ~/.zshrc
+
+  sudo cp -r ./config/zsh/plugins/zsh-lsd ~/.oh-my-zsh/plugins/
+
+  # .config files:
+  printf "${BPurple}\nCopying ~/.config files${NC}"
+
+  # lsd:
+
+  sudo mkdir -p ~/.config/lsd/
+  sudo cp ./config/lsd/config.yaml ~/.config/lsd/config.yaml
+
+  # vesktop:
+  sudo mkdir -p ~/.config/vesktop/themes/
+  sudo mkdir -p ~/.config/vesktop/settings/
+  sudo cp ./config/vesktop/themes/catppuccin-mocha.theme.css ~/.config/vesktop/themes
+  sudo cp ./config/vesktop/settings/settings.json ~/.config/vesktop/settings/
+
+  # gtk/swaync/cursors (AKA THEMING):
+  sudo cp ./config/gtk/.gtkrc-2.0.mime ~/.gtkrc-2.0.mime
+
+  sudo mkdir -p ~/.config/gtk-3.0/
+  sudo cp ./config/gtk/settings.ini ~/.config/gtk-3.0/settings.ini
+
+  sudo mkdir -p ~/.config/swaync
+  sudo cp ./config/swaync/style.css ~/.config/swaync/style.css
+  sudo cp ./config/swaync/config.json ~/.config/swaync/config.json
+
+  gsettings set org.gnome.desktop.interface cursor-theme MacOS
+
+  sudo mkdir -p ~/.local/share/icons/default
+  sudo ln --symbolic /usr/share/icons/macOS ~/.local/share/icons/default/
+
+  sudo mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml/
+  sudo cp ./config/xfce4/xsettings.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+
+  # Set some files as exacutable
+  sudo chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
+  sudo chmod +x ~/.config/waybar/scripts/weather.sh
+
+  # Default settings:
+  gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+
+fi
+
+### Script is done ###
+printf "\n${BPurple}Script has completed!${NC}\n"
+read -n1 -rep 'Would you like to start Hyprland now? y/n: ' HYP
+if [[ $HYP == "Y" || $HYP == "y" ]]; then
+  exec Hyprland
+else
+  echo -e "You can start Hyprland at any time by typing 'Hyprland'.\n(or just restart the computer)"
+  exit
+fi

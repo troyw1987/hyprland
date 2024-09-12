@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BRIGHTNESS=$(brightnessctl --device=tpacpi::kbd_backlight g)
+
+echo $BRIGHTNESS
+
+if [ $BRIGHTNESS -ge 2 ]; then
+  brightnessctl --device=tpacpi::kbd_backlight s 0
+else
+  brightnessctl --device=tpacpi::kbd_backlight s +1
+fi

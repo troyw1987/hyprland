@@ -52,8 +52,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     hyprlock swaybg papirus-icon-theme \
     tlp zoxide-bin tldr \
     greetd greetd-tuigreet \
-    zoxide go lsd \
-    rust-analyzer
+    go lsd rust-analyzer
 
   printf "${BPurple}Starting the TLP service...${NC}\n"
   sudo systemctl enable tlp.service
@@ -76,7 +75,7 @@ if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
 fi
 
 ### Copy Config Files ###
-read -n1 -rep 'Would you like to copy config files? y/n: ' CFG
+read -n1 -rep 'Would you like to copy config files and start? y/n: ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}Copying config files...${NC}\n"
 
@@ -88,11 +87,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}\nCopying and enabling TLP${NC}"
   sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
   sudo systemctl enable --now tlp.service
-
-  # greetd:
-  printf "${BPurple}\nCopying and enabling Greetd${NC}"
-  sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
-  sudo systemctl enable --now greetd.service
 
   # grub:
   printf "${BPurple}\nCopying and enabling Grub${NC}"
@@ -151,14 +145,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   # Default settings:
   gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 
+  # greetd:
+  printf "${BPurple}\nCopying and enabling Greetd${NC}"
+  sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
+  sudo systemctl enable --now greetd.service
+
 fi
 
-### Script is done ###
 printf "\n${BPurple}Script has completed!${NC}\n"
-read -n1 -rep 'Would you like to start Hyprland now? y/n: ' HYP
-if [[ $HYP == "Y" || $HYP == "y" ]]; then
-  exec Hyprland
-else
-  echo -e "You can start Hyprland at any time by typing 'Hyprland'.\n(or just restart the computer)"
-  exit
-fi

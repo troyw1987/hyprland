@@ -7,8 +7,6 @@ Cd into this folder and run `./set-hypr` to follow the install.
 
 While setting the terminal to ZSH, you must type `exit` afterwards to continue the install.
 
-While copying the config, greetd may enable and 
-
 # Post Installation:
 
 You may have to reconfigure hyprland configuration for your monitors.
@@ -37,7 +35,7 @@ Super + Shift + S -> Moves window into special workspace
 Super + 1-0 -> Goes to each workspace
 ```
 
-Control keys which are binded:
+# Scripted Control keys:
 ```
 Printscreen puts screen selection into clipboard
 Media Controls

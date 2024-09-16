@@ -114,6 +114,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo mkdir -p ~/.config/lsd/
   sudo cp ./config/lsd/config.yaml ~/.config/lsd/config.yaml
 
+  # Ulauncher:
+  sudo mkdir -p ~/.config/ulauncher/user-themes/
+  sudo cp -r ./config/ulauncher/themes/Catppuccin-Mocha-Mauve ~/.config/ulauncher/user-themes/
+  sudo cp ./config/ulauncher/settings.json ~/.config/ulauncher/settings.json
+
   # vesktop:
   sudo mkdir -p ~/.config/vesktop/themes/
   sudo mkdir -p ~/.config/vesktop/settings/

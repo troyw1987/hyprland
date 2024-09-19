@@ -96,6 +96,8 @@ source $ZSH/oh-my-zsh.sh
 alias ftldr="compgen -c | fzf | xargs tldr"
 
 alias ls="lsd -a"
+alias cp="pycp"
+alias mv="pymv"
 
 alias ehyprl="nvim ~/.config/hypr/hyprland.conf"
 

@@ -46,7 +46,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     jq stow npm \
     unzip noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra \
-    ttf-inconsolata-nerd ttf-jetbrains-mono-nerd cliphist mercury-browser-bin \
+    ttf-inconsolata-nerd ttf-jetbrains-mono-nerd \
+    pycp cliphist mercury-browser-bin \
     apple_cursor spicetify-cli \
     wttrbar geoip hypridle \
     hyprlock swaybg papirus-icon-theme \

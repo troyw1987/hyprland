@@ -51,7 +51,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     apple_cursor spicetify-cli \
     wttrbar geoip hypridle \
     hyprlock swaybg papirus-icon-theme \
-    tlp zoxide-bin tldr \
+    tlp zoxide tldr \
     greetd greetd-tuigreet \
     go lsd rust-analyzer
 

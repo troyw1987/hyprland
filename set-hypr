@@ -55,6 +55,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     greetd greetd-tuigreet \
     go lsd rust-analyzer
 
+  sudo chown -R troy:troy ~/
+
   printf "${BPurple}Starting the TLP service...${NC}\n"
   sudo systemctl enable tlp.service
 

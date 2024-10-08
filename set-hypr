@@ -54,7 +54,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     tlp zoxide tldr \
     greetd greetd-tuigreet \
     go lsd rust-analyzer \
-    xvidcore libvpx libmpeg2 x264 x265 libdv schroedinger aom davs2 faad2 lame libdca libmad ffmpeg ### Video codecs ###
+    xvidcore libvpx libmpeg2 x264 x265 libdv schroedinger aom davs2 faad2 lame libdca libmad ffmpeg feh ### Video codecs ###
 
   sudo chown -R troy:troy /home/
 

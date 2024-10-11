@@ -10,7 +10,7 @@
   "modules": [
     {
       "type": "custom",
-      "format": "\u001b[36m   ファストフェッチ情報",
+      "format": "\u001b[36m   Fast Fetch Information",
     },
     {
       "type": "custom",
@@ -48,7 +48,7 @@
     "break",
     {
       "type": "custom",
-      "format": "\u001b[36m   デバイス情報",
+      "format": "\u001b[36m   Device Information",
     },
     {
       "type": "custom",

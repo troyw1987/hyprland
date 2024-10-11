@@ -52,7 +52,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     wttrbar geoip hypridle \
     hyprlock swaybg papirus-icon-theme \
     tlp zoxide tldr \
-    greetd greetd-tuigreet \
+    greetd greetd-tuigreet fastfetch \
     go lsd rust-analyzer \
     xvidcore libvpx libmpeg2 x264 x265 libdv schroedinger aom davs2 faad2 lame libdca libmad ffmpeg feh ### Video codecs ###
 

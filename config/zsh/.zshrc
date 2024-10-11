@@ -120,3 +120,5 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 SUDO_EDITOR=/usr/bin/nvim
 export SUDO_EDITOR
+
+fastfetch 

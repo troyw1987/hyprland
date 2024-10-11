@@ -83,6 +83,8 @@ read -n1 -rep 'Would you like to copy config files and start? y/n: ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}Copying config files...${NC}\n"
 
+  sudo timedatectl set-timezone America/Phoenix
+
   sudo cp -R ./config/* ~/.config/
 
   ### Root Directory Changes: ###

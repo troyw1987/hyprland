@@ -47,7 +47,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     unzip noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra \
     ttf-inconsolata-nerd ttf-jetbrains-mono-nerd \
-    pycp cliphist mercury-browser-bin \
+    pycp cliphist mercury-browser-bin tmux \
     apple_cursor spicetify-cli \
     wttrbar geoip hypridle \
     hyprlock swaybg papirus-icon-theme \
@@ -112,6 +112,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
   # .config files:
   printf "${BPurple}\nCopying ~/.config files${NC}"
+
+  # tpm:
+  printf "${BPurple}\nInstalling Tmux TPM${NC}"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  sudo cp ./config/tmux/.tmux.conf ~/.tmux.conf
 
   # lsd:
 

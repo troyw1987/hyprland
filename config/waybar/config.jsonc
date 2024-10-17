@@ -24,20 +24,16 @@
     "pulseaudio#microphone",
     "tray"
   ],
-  "hyprland/window": {
-    "format": "{}"
-  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "on-click": "activate"
   },
   "custom/weather": {
-    "format": "{}°F",
-    "tooltip": true,
+    "format": "{}",
+    "tooltip": false,
     "interval": 600,
-    "exec": "eval $(sh ~/.config/waybar/scripts/weather.sh)",
-    "return-type": "json"
+    "exec": "sh ~/.config/waybar/scripts/weatherv2.sh"
   },
   "tray": {
     "icon-size": 18,
@@ -100,7 +96,6 @@
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "tooltip": false,
     "format-muted": "󰝟",
     "on-click": "pamixer -t",
     "on-scroll-up": "pamixer -i 5",
@@ -139,9 +134,9 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{icon} {signalStrength}%",
+    "format-wifi": "{icon}",
     "format-ethernet": "{ipaddr}/{cidr}",
-    "tooltip-format": "{essid} - {ifname} via {gwaddr}",
+    "tooltip-format": "{essid} - {ifname} via {gwaddr} @ {signalStrength}%",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "󰤮",
     "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",

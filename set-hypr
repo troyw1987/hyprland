@@ -53,8 +53,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     hyprlock swaybg papirus-icon-theme \
     tlp zoxide tldr \
     greetd greetd-tuigreet fastfetch \
-    go lsd \
-    lua-language-server rust-analyzer \
+    go lsd fzf\
+    lua-language-server rust-analyzer tailwind-css \
     xvidcore libvpx libmpeg2 x264 x265 libdv schroedinger aom davs2 faad2 lame libdca libmad ffmpeg feh ### Video codecs ###
 
   sudo chown -R troy:troy /home/
@@ -99,10 +99,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}\nCopying and enabling Grub${NC}"
   sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
   sudo cp ./root/grub/grub /etc/default/grub
-
-  printf "${BPurple}\nRegenerating GRUB:${NC}\n"
   sudo grub-mkconfig -o /boot/grub/grub.cfg
-  printf "\n"
 
   ### Userspace/.config Changes: ###
 
@@ -120,22 +117,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}\nInstalling Tmux TPM${NC}"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   sudo cp ./config/tmux/.tmux.conf ~/.tmux.conf
-
-  # lsd:
-
-  sudo mkdir -p ~/.config/lsd/
-  sudo cp ./config/lsd/config.yaml ~/.config/lsd/config.yaml
-
-  # Ulauncher:
-  sudo mkdir -p ~/.config/ulauncher/user-themes/
-  sudo cp -r ./config/ulauncher/themes/Catppuccin-Mocha-Mauve ~/.config/ulauncher/user-themes/
-  sudo cp ./config/ulauncher/settings.json ~/.config/ulauncher/settings.json
-
-  # vesktop:
-  sudo mkdir -p ~/.config/vesktop/themes/
-  sudo mkdir -p ~/.config/vesktop/settings/
-  sudo cp ./config/vesktop/themes/catppuccin-mocha.theme.css ~/.config/vesktop/themes
-  sudo cp ./config/vesktop/settings/settings.json ~/.config/vesktop/settings/
 
   # gtk/swaync/cursors (AKA THEMING):
   sudo cp ./config/gtk/.gtkrc-2.0.mime ~/.gtkrc-2.0.mime

@@ -93,7 +93,17 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-alias ftldr="compgen -c | fzf | xargs tldr"
+alias restartwaybar="pkill waybar && hyprctl dispatch exec waybar"
+
+alias editsethypr="nvim ~/git/hyprland/set-hypr"
+alias edithyprconf="nvim ~/.config/hypr/hyprland.conf"
+
+alias gotohyprconf="cd ~/.config/hypr/"
+alias gotowaybarconf="cd ~/.config/waybar/"
+
+alias gotosethyprconf="cd ~/git/hyprland/"
+
+alias n="nvim"
 
 alias ls="lsd -a"
 alias cp="pycp"
@@ -121,4 +131,4 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 SUDO_EDITOR=/usr/bin/nvim
 export SUDO_EDITOR
 
-fastfetch 
+fastfetch --logo-padding-left 4

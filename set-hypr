@@ -119,11 +119,13 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo cp ./config/tmux/.tmux.conf ~/.tmux.conf
 
   # gtk theme:
-  sudo cp ./root/gtk/ /usr/share/themes/
+  sudo cp -r ./root/gtk/theme/Dracula/ /usr/share/themes/
+  sudo cp -r ./root/gtk/icons/Dracula/ /usr/share/icons/
 
   gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
   gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 
+  gsettings set org.gnome.desktop.interface icon-theme "Dracula"
 
   # gtk/swaync/cursors (AKA THEMING):
   sudo cp ./config/gtk/.gtkrc-2.0.mime ~/.gtkrc-2.0.mime

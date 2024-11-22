@@ -101,6 +101,13 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo cp ./root/grub/grub /etc/default/grub
   sudo grub-mkconfig -o /boot/grub/grub.cfg
 
+
+  # reflector:
+  printf "${BPurple}\nCopying and enabling Reflector${NC}"
+  sudo cp ./root/reflector/reflector.conf /etc/xdg/reflector/reflector.conf
+  sudo systemctl enable reflector.service reflector.timer
+  sudo systemctl start reflector.service reflector.timer
+
   ### Userspace/.config Changes: ###
 
   # zsh:

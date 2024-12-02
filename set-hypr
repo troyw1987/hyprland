@@ -53,7 +53,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     hyprlock swaybg papirus-icon-theme \
     tlp zoxide tldr \
     greetd greetd-tuigreet fastfetch \
-    go lsd fzf\
+    go lsd fzf reflector\
     lua-language-server rust-analyzer tailwind-css \
     xvidcore libvpx libmpeg2 x264 x265 libdv schroedinger aom davs2 faad2 lame libdca libmad ffmpeg feh ### Video codecs ###
 

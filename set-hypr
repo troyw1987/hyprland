@@ -36,7 +36,7 @@ read -n1 -rep 'Would you like to install the packages? y/n: ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
   yay -Syu
   yay -S --noconfirm hyprland kitty waybar \
-    ulauncher swaync nemo \
+    rofi swaync nemo \
     polkit-gnome python-requests \
     grim slurp pamixer brightnessctl gvfs \
     bluez bluez-utils lxappearance xfce4-settings \

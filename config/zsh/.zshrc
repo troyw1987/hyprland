@@ -11,7 +11,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="heapbytes"
 
-eval "$(zoxide init --cmd cd zsh)"
 
 
 # Set list of themes to pick from when loading at random
@@ -95,21 +94,9 @@ source $ZSH/oh-my-zsh.sh
 
 alias restartwaybar="pkill waybar && hyprctl dispatch exec waybar"
 
-alias editsethypr="nvim ~/git/hyprland/set-hypr"
-alias edithyprconf="nvim ~/.config/hypr/hyprland.conf"
-
-alias gotohyprconf="cd ~/.config/hypr/"
-alias gotowaybarconf="cd ~/.config/waybar/"
-
 alias gotosethyprconf="cd ~/git/hyprland/"
 
-alias n="nvim"
-
 alias ls="lsd -a"
-alias cp="pycp"
-alias mv="pymv"
-
-alias ehyprl="nvim ~/.config/hypr/hyprland.conf"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -130,5 +117,3 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 SUDO_EDITOR=/usr/bin/nvim
 export SUDO_EDITOR
-
-fastfetch --logo-padding-left 4

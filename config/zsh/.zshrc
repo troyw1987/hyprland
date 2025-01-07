@@ -93,7 +93,6 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 alias restartwaybar="pkill waybar && hyprctl dispatch exec waybar"
-
 alias gotosethyprconf="cd ~/git/hyprland/"
 
 alias ls="lsd -a"

@@ -35,47 +35,22 @@ fi
 read -n1 -rep 'Would you like to install the packages? y/n: ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
   yay -Syu
-  yay -S --noconfirm hyprland kitty waybar \
-    rofi swaync nemo \
-    polkit-gnome python-requests \
-    grim slurp pamixer brightnessctl gvfs \
-    bluez bluez-utils network-manager-applet lxappearance xfce4-settings \
-    xdg-desktop-portal-hyprland \
-    vesktop-bin ttf-vista-fonts btop \
-    neovim zsh ripgrep \
-    jq stow npm \
-    unzip noto-fonts noto-fonts-cjk \
-    noto-fonts-emoji noto-fonts-extra \
-    ttf-inconsolata-nerd ttf-jetbrains-mono-nerd \
-    pycp cliphist mercury-browser-bin tmux \
-    apple_cursor spicetify-cli \
-    wttrbar geoip hypridle \
-    hyprlock swaybg papirus-icon-theme \
-    tlp zoxide tldr \
-    greetd greetd-tuigreet fastfetch \
-    go lsd fzf reflector\
-    lua-language-server rust-analyzer tailwind-css \
-    xvidcore libvpx libmpeg2 x264 x265 libdv schroedinger aom davs2 faad2 lame libdca libmad ffmpeg feh ### Video codecs ###
+  yay -S - < ./packages.txt
+  yay -Yc
 
-  sudo chown -R troy:troy /home/
-
-  printf "${BPurple}Starting the TLP service...${NC}\n"
-  sudo systemctl enable tlp.service
-
-  # Start the bluetooth service
-  printf "${BPurple}Starting the Bluetooth Service...${NC}\n"
+  # enable tlp and bluetooth
+  sudo systemctl enable --now tlp.service
   sudo systemctl enable --now bluetooth.service
-  sleep 2
+  sudo systemctl enable --now tlp.service
 
-  # Clean out other portals
-  printf "${BPurple}Cleaning out conflicting xdg portals...${NC}\n"
+  # Clean out other conflicting portals 
   yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
 fi
 
 ### Set zsh as shell ###
 read -n1 -rep 'Would you like to set your shell to ZSH? y,n: ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
-  printf "${BPurple}\nPlease type in 'exit' once ZSH is installed and within the zshell to continue the install.\n${NC}"
+  printf "${BPurple}\nType in 'exit' once ZSH is installed to return.\n${NC}"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
@@ -84,41 +59,33 @@ read -n1 -rep 'Would you like to copy config files and start? y/n: ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}Copying config files...${NC}\n"
 
-  sudo timedatectl set-timezone America/Phoenix
-
   sudo cp -R ./config/* ~/.config/
 
-  ### Root Directory Changes: ###
+  ### Root Changes: ###
 
   # tlp:
-  printf "${BPurple}\nCopying and enabling TLP${NC}"
   sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
-  sudo systemctl enable --now tlp.service
+
 
   # grub:
-  printf "${BPurple}\nCopying and enabling Grub${NC}"
   sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
   sudo cp ./root/grub/grub /etc/default/grub
+
   sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 
   # reflector:
-  printf "${BPurple}\nCopying and enabling Reflector${NC}"
   sudo cp ./root/reflector/reflector.conf /etc/xdg/reflector/reflector.conf
-  sudo systemctl enable reflector.service reflector.timer
+  sudo systemctl enable --now reflector.service reflector.timer
   sudo systemctl start reflector.service reflector.timer
 
   ### Userspace/.config Changes: ###
 
   # zsh:
-  printf "${BPurple}\nCopying .zshrc and zsh theme config${NC}"
   sudo cp ./config/zsh/themes/heapbytes.zsh-theme ~/.oh-my-zsh/themes
   sudo cp ./config/zsh/.zshrc ~/.zshrc
 
   sudo cp -r ./config/zsh/plugins/zsh-lsd ~/.oh-my-zsh/plugins/
-
-  # .config files:
-  printf "${BPurple}\nCopying ~/.config files${NC}"
 
   # tpm:
   printf "${BPurple}\nInstalling Tmux TPM${NC}"
@@ -144,7 +111,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo cp ./config/swaync/style.css ~/.config/swaync/style.css
   sudo cp ./config/swaync/config.json ~/.config/swaync/config.json
 
-  gsettings set org.gnome.desktop.interface cursor-theme MacOS
+  gsettings set org.gnome.desktop.interface cursor-theme macOS
 
   sudo mkdir -p ~/.local/share/icons/default
   sudo ln --symbolic /usr/share/icons/macOS ~/.local/share/icons/default/
@@ -152,7 +119,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml/
   sudo cp ./config/xfce4/xsettings.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
-  # Set some files as exacutable
+  # Set some files as executable
   sudo chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
   sudo chmod +x ~/.config/waybar/scripts/weather.sh
 
@@ -167,3 +134,4 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 fi
 
 printf "\n${BPurple}Script has completed!${NC}\n"
+

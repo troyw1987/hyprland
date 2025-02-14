@@ -39,7 +39,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     rofi swaync nemo \
     polkit-gnome python-requests \
     grim slurp pamixer brightnessctl gvfs \
-    bluez bluez-utils lxappearance xfce4-settings \
+    bluez bluez-utils network-manager-applet lxappearance xfce4-settings \
     xdg-desktop-portal-hyprland \
     vesktop-bin ttf-vista-fonts btop \
     neovim zsh ripgrep \

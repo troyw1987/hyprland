@@ -17,11 +17,11 @@
   "modules-right": [
     "network",
     "bluetooth",
-    "temperature",
-    "battery",
     "backlight",
     "pulseaudio",
     "pulseaudio#microphone",
+    "temperature",
+    "battery",
     "tray"
   ],
   "hyprland/workspaces": {
@@ -103,6 +103,7 @@
     "scroll-step": 5,
     "format-icons": {
       "headphone": " ",
+      "hdmi": "󰡁",
       "hands-free": " ",
       "headset": " ",
       "phone": " ",
@@ -136,10 +137,10 @@
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "{icon}",
     "format-ethernet": "{ipaddr}/{cidr}",
-    "tooltip-format": "{essid} - {ifname} via {gwaddr} @ {signalStrength}%",
+    "tooltip-format": "󰖩   '{essid}'\n󰿗   '{signalStrength}%'\n\n   '{ifname}'\n󰩟   '{gwaddr}'",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "󰤮",
-    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
+    "on-click": "nm-applet",
     "format-icons": {
       "default": [
         "󰤫",
@@ -157,6 +158,7 @@
     "format-connected": "󰂱 {num_connections}",
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": "󰂱 {device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}"
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "blueman-manager"
   }
 }

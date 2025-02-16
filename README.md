@@ -12,6 +12,7 @@
 # Post Installation:
 
 You may have to reconfigure hyprland configuration for your monitors.
+`~/.config/hyprland`
 
 # Notable things which get installed:
 

@@ -1,11 +1,11 @@
 # Installation:
-Start with a minimal Arch install with yay.
+1. Start with a minimal Arch install.
+( Installer will detect if Yay must be installed when ran )
 
-make a `~/git` folder or similar with user permissions and clone it this repo in there.
-
-Cd into this folder and run `./set-hypr` to follow the install.
-
-While setting the terminal to ZSH, you must type `exit` afterwards to continue the install.
+2. make a `~/git` folder or clone this repo and use `chown -R` to assign your user permissions.
+  
+3. run `~/git/hyprland/set-hypr` and follow install.
+( while setting the terminal to ZSH, you must type `exit` afterwards to continue the install )
 
 # Post Installation:
 
@@ -14,7 +14,7 @@ You may have to reconfigure hyprland configuration for your monitors.
 # Notable things which get installed:
 
 ```
-ULauncher(App launcher) [SUPER+R]
+Tofi(App launcher) [SUPER+R]
 Kitty(Terminal) [Super+Enter]
 Vencord(Discord) [Launched via Ulauncher]
 Btop(Task Manager) [Launched via Kitty]
@@ -44,3 +44,4 @@ Brightness Controls
 Keyboard Backlight
 Favorites Key opens notifications
 ```
+`( for a more complete list, read through hyprland.conf at the bottom `

@@ -4,6 +4,11 @@
 2. make a `~/git` folder or clone this repo and use `chown -R` to assign your user permissions.
 3. run `~/git/hyprland/set-hypr` and follow install.
 (while setting the terminal to ZSH, you must type `exit` afterwards to continue the install)
+4. It will ask to launch. Either A:say 'y' and launch, B: say 'n' and type `Hyprland` into console, or restart pc
+5. Enjoy
+6. Realize Windows is better and get rid of this virus from your computer
+7. ???
+
 # Post Installation:
 
 You may have to reconfigure hyprland configuration for your monitors.

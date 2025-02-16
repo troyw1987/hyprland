@@ -1,12 +1,9 @@
 # Installation:
 1. Start with a minimal Arch install.
-( Installer will detect if Yay must be installed when ran )
-
+(Installer will detect if Yay must be installed when ran)
 2. make a `~/git` folder or clone this repo and use `chown -R` to assign your user permissions.
-  
 3. run `~/git/hyprland/set-hypr` and follow install.
-( while setting the terminal to ZSH, you must type `exit` afterwards to continue the install )
-
+(while setting the terminal to ZSH, you must type `exit` afterwards to continue the install)
 # Post Installation:
 
 You may have to reconfigure hyprland configuration for your monitors.

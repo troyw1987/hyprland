@@ -41,7 +41,7 @@
   },
   "clock": {
     "interval": 60,
-    "format": " {:%I:%M%p}",
+    "format": "  {:%I:%M%p}",
     "tooltip-format": " {:%B %e (%D)}\n<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
@@ -73,7 +73,7 @@
       "warning": 30,
       "critical": 20
     },
-    "format": "{icon} {capacity}%",
+    "format": "{icon}  {capacity}%",
     "format-discharging": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰂄 {capacity}%",
@@ -97,7 +97,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟",
-    "on-click": "pamixer -t",
+    "on-click": "pavucontrol",
     "on-scroll-up": "pamixer -i 5",
     "on-scroll-down": "pamixer -d 5",
     "scroll-step": 5,

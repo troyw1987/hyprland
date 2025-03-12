@@ -24,6 +24,7 @@ pamixer
 brightnessctl
 bluez
 bluez-utils
+blueman
 network-manager-applet
 tlp
 grim

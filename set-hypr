@@ -55,7 +55,7 @@ fi
 read -n1 -rep 'Would you like to set your shell to ZSH? y,n: ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
   printf "${BPurple}\nChanging shell to ZSH:\n${NC}"
-  sudo chsh -s $(whch zsh)
+  sudo chsh -s $(which zsh)
 fi
 
 ### Copy Config Files ###

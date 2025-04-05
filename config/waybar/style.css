@@ -2,7 +2,7 @@
 * {
     border: @crust;
     border-radius: 0;
-    font-family: "Hack";
+    font-family: "inconsolata-nerd";
     font-weight: bold;
     font-size: 18px;
     min-height: 0;
@@ -66,6 +66,8 @@ tooltip {
     margin: 3px 0px;
     margin-top: 10px;
     border: 1px solid #181825;
+    border-right: none;
+    border-radius: 10px 0px 0px 10px;
 }
 
 #temperature {
@@ -75,10 +77,6 @@ tooltip {
 
 #temperature.critical {
     color: @red;
-}
-
-#backlight {
-    border-radius: 10px 0px 0px 10px;
 }
 
 #tray {
@@ -105,32 +103,26 @@ tooltip {
     color: @peach;
     border-radius: 10px 0px 0px 10px;
     margin-left: 10px;
-    border-right: 0px;
+    border-right: none;
 }
 
 #network {
     color: @blue;
     border-radius: 10px 0px 0px 10px;
-    border-left: 0px;
-    border-right: 0px;
+    border-left: none;
+    border-right: none;
 }
 
 #bluetooth {
     color: @blue;
     border-radius: 0px 10px 10px 0px;
+    border-left : none;
     margin-right: 10px
 } 
 
 #pulseaudio {
     color: @blue;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#pulseaudio.microphone {
-    color: @mauve;
-    border-left: 0px;
-    border-right: 0px;
+    border-left: none;
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px;
 }
@@ -144,6 +136,5 @@ tooltip {
 
 #custom-weather {
     border-radius: 0px 10px 10px 0px;
-    border-right: 0px;
-    margin-left: 0px;
+    border-left: none;
 }

@@ -35,7 +35,7 @@ fi
 read -n1 -rep 'Would you like to install the packages? y/n: ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
   yay -Syu
-  yay -S - < ./packages.txt
+  yay -S - <./packages.txt
   yay -Yc
 
   # enable tlp and bluetooth
@@ -43,15 +43,19 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
   sudo systemctl enable --now bluetooth.service
   sudo systemctl enable --now tlp.service
 
-  # Clean out other conflicting portals 
-  yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+  # Clean out other conflicting portals
+  yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gnome
+
+  # Install live-server for nvim
+  pnpm add -g live-server
+  pnpm fund
 fi
 
 ### Set zsh as shell ###
 read -n1 -rep 'Would you like to set your shell to ZSH? y,n: ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
-  printf "${BPurple}\nType in 'exit' once ZSH is installed to return.\n${NC}"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  printf "${BPurple}\nChanging shell to ZSH:\n${NC}"
+  sudo chsh -s $(whch zsh)
 fi
 
 ### Copy Config Files ###
@@ -66,13 +70,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   # tlp:
   sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
 
-
   # grub:
   sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
   sudo cp ./root/grub/grub /etc/default/grub
 
   sudo grub-mkconfig -o /boot/grub/grub.cfg
-
 
   # reflector:
   sudo cp ./root/reflector/reflector.conf /etc/xdg/reflector/reflector.conf
@@ -131,7 +133,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
   sudo systemctl enable --now greetd.service
 
+  # CHOWNING everythin to make it all work:
+  sudo chown -R $USER:$USER ~/
+
 fi
 
 printf "\n${BPurple}Script has completed!${NC}\n"
-

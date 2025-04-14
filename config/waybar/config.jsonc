@@ -28,11 +28,21 @@
     "all-outputs": true,
     "on-click": "activate"
   },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "🌎 $1",
+      "(.*) - vim": " $1",
+      "(.*) - zsh": " [$1]"
+    }
+  },
   "custom/weather": {
-    "format": "{}",
-    "tooltip": false,
-    "interval": 600,
-    "exec": "sh ~/.config/waybar/scripts/weatherv2.sh"
+    "format": "{}󰔄 ",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --hide-conditions --ampm --location $(curl --silent ipinfo.io/city)",
+    "return-type": "json"
   },
   "tray": {
     "icon-size": 18,

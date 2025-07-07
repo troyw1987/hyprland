@@ -85,6 +85,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
   sudo cp -r ./config/zsh/plugins/zsh-lsd ~/.oh-my-zsh/plugins/
 
+  #yazi:
+  ya pack -a yazi-rs/flavors:catppuccin-mocha
+
   # tpm:
   printf "${BPurple}\nInstalling Tmux TPM${NC}"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

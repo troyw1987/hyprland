@@ -47,6 +47,8 @@ reflector
 throttled
 lsd
 fzf
+fd
+lazygit
 fastfetch
 wttrbar
 apple_cursor

@@ -132,6 +132,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
   sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
   sudo systemctl enable --now greetd.service
 
+  # install lazy vim
+
+  mkdir ~/.config/nvim
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  rm -rf ~/.config/nvim/.git
+
   # CHOWNING everything to make it all work:
   sudo chown -R $USER:$USER ~/
 

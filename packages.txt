@@ -27,7 +27,7 @@ btop
 neovim
 zsh
 ffmpeg
-feh
+viu
 pamixer
 brightnessctl
 bluez

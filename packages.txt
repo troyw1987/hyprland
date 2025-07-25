@@ -78,3 +78,4 @@ faad2
 lame
 libdca
 libmad
+pureref

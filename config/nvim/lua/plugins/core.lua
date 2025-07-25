@@ -2,10 +2,20 @@
 -- stylua: ignore
 
 return {
-  {'catppuccin/nvim'},
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
-  {'nvim-treesitter/nvim-treesitter'},
-  {'akinsho/toggleterm.nvim', version = "*", opts = {}},
+  {
+    "LazyVim/LazyVim",
+    opts = {colorscheme = "catppuccin"},
+    plugins = {
+
+		{ import = "lazyvim.plugins.extras.linting.eslint" },
+		{ import = "lazyvim.plugins.extras.formatting.prettier" },
+    }
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000
+  },
   {"snacks.nvim",
   opts = {
     dashboard = {
@@ -54,5 +64,8 @@ return {
       },
     },
   },
-}
+},
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  {'nvim-treesitter/nvim-treesitter'},
+  {'akinsho/toggleterm.nvim', version = "*", opts = {}},
 }

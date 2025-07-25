@@ -38,9 +38,10 @@ Apps:
 ```
 Tofi(App launcher) [SUPER+R]
 Kitty(Terminal) [SUPER+Enter]
-Vesktop(Discord) [launched via Tofi]
-Nemo(File Manager) [launched via Tofi]
-Btop(Task Manager) [launched via Kitty]
+Vesktop(Discord) [App Launcher]
+Pureref(Image References) [App Launcher]
+Nemo(File Manager) [App Launcher]
+Btop(Task Manager) [Terminal]
 ```
 
 Background Apps:

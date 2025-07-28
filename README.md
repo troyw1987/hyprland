@@ -92,3 +92,4 @@ Favorites Key (star icon) opens notifications
 
 ```
 
+

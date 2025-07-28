@@ -43,6 +43,7 @@ stow
 npm
 unzip
 tldr
+man
 reflector
 throttled
 lsd
@@ -79,3 +80,6 @@ lame
 libdca
 libmad
 pureref
+aichat
+wev
+nwg-displays

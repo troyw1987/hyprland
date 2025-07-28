@@ -16,6 +16,9 @@ window#waybar {
 window#waybar.empty #window {
   color: @flamingo;
   background-color: @base;
+  opacity: 0;
+  min-height: 0px;
+  min-width: 0px;
   border: none;
 }
 

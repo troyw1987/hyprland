@@ -29,6 +29,7 @@ Notable places to configure things:
 `~/.oh-my-zsh`
 `/etc/*`
 
+![View of the desktop.](media/desktop.png)
 
 # Notable things which get installed
 

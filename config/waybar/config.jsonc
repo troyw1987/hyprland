@@ -5,7 +5,7 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 47,
+  "height": 25,
   "modules-left": [
     "clock",
     "custom/weather",
@@ -32,7 +32,7 @@
     "format": "{}󰔄 ",
     "tooltip": true,
     "interval": 3600,
-    "exec": "wttrbar --hide-conditions --ampm --location $(curl ipinfo.io/city)",
+    "exec": "wttrbar --hide-conditions --ampm --location '$(curl ipinfo.io/city)'",
     "return-type": "json"
   },
   "tray": {
@@ -41,7 +41,7 @@
   },
   "clock": {
     "interval": 60,
-    "format": "  {:%I:%M%p}",
+    "format": " {:%I:%M%p}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
@@ -56,7 +56,8 @@
   },
   "backlight": {
     "device": "intel_backlight",
-    "format": "{icon}  {percent}%",
+    "format": "{icon}",
+    "tooltip-format": "{percent}%",
     "format-icons": [
       "",
       "",
@@ -72,8 +73,7 @@
       ""
     ],
     "on-scroll-up": "brightnessctl set 1%+",
-    "on-scroll-down": "brightnessctl set 1%-",
-    "min-length": 6
+    "on-scroll-down": "brightnessctl set 1%-"
   },
   "battery": {
     "states": {
@@ -83,7 +83,7 @@
     },
     "format": "{icon} {capacity}%",
     "format-discharging": "{icon} {capacity}%",
-    "format-charging": "󱐋{capacity}%",
+    "format-charging": "󱐋 {capacity}%",
     "format-plugged": "󱐋󰚥 {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": [
@@ -103,12 +103,13 @@
     ]
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}",
     "format-muted": "󰝟",
     "on-click": "pavucontrol",
     "on-scroll-up": "pamixer -i 5",
     "on-scroll-down": "pamixer -d 5",
     "scroll-step": 5,
+    "tooltip-format": "{desc}\n{volume}% {icon}",
     "format-icons": {
       "headphone": "󰋋",
       "hdmi": "󰡁",

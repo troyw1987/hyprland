@@ -93,7 +93,6 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 alias restartwaybar="pkill waybar && hyprctl dispatch exec waybar"
-alias gotosethyprconf="cd ~/git/hyprland/"
 
 alias ls="lsd -a"
 
@@ -110,6 +109,15 @@ alias ls="lsd -a"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 
 export GOPATH=$HOME/go 
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin

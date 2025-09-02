@@ -1,56 +1,45 @@
 @import "mocha.css";
 * {
-    border: @crust;
-    border-radius: 0;
-    font-family: "inconsolata-nerd";
+    font-family: "0xProto Nerd Font";
     font-weight: bold;
-    font-size: 18px;
-    min-height: 0;
-}
-
-window#waybar {
-    background: transparent;
+    font-size: 16px;
     color: @text;
 }
 
+window#waybar {
+    padding-top: 15px;
+    background: none;
+}
+
 window#waybar.empty #window {
-  color: @flamingo;
-  background-color: @base;
   opacity: 0;
   min-height: 0px;
   min-width: 0px;
-  border: none;
 }
 
 tooltip {
     background: @base;
     border-radius: 10px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: @crust;
 }
 
-#workspaces button {
-    padding: 5px;
-    color: #313244;
-    margin-right: 5px;
-}
-
-#workspaces button.active {
-    color: @mauve;
-}
-
-
-#workspaces button.urgent {
-    color: #11111b;
-    background: #a6e3a1;
+#workspaces {
     border-radius: 10px;
+    background: @base;
+    margin-left: 10px;
+    padding-right: 0px;
+}
+button {
+    color: @text;
+}
+button:hover {
+  border-radius: 10px;
+	background-color: @hover-bg;
+	color: @hover-fg;
 }
 
-#workspaces button:hover {
-  color: @sapphire;
-    border-radius: 1rem;
+button.active {
 }
+
 
 #custom-weather,
 #window,
@@ -60,17 +49,12 @@ tooltip {
 #network,
 #bluetooth,
 #temperature,
-#workspaces,
 #tray,
 #backlight {
     background: #1e1e2e;
     opacity: 0.8;
     padding: 0px 10px;
-    margin: 3px 0px;
-    margin-top: 10px;
-    border: 1px solid #181825;
     border-right: none;
-    border-radius: 10px 0px 0px 10px;
 }
 
 #temperature {
@@ -87,13 +71,6 @@ tooltip {
     margin-right: 10px;
 }
 
-#workspaces {
-    background: #1e1e2e;
-    border-radius: 10px;
-    margin-left: 10px;
-    padding-right: 0px;
-    padding-left: 5px;
-}
 
 
 #window {
@@ -118,9 +95,7 @@ tooltip {
 
 #bluetooth {
     color: @blue;
-    border-radius: 0px 10px 10px 0px;
     border-left : none;
-    margin-right: 10px
 } 
 
 #pulseaudio {

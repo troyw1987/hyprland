@@ -15,8 +15,6 @@ lib32-mesa
 mesa-utils
 vulkan-intel
 lib32-vulkan-intel
-jdk8-openjdk
-jdk11-openjdk
 tofi
 firefox
 vesktop-bin
@@ -33,6 +31,7 @@ brightnessctl
 bluez
 bluez-utils
 pnpm
+networkmanager
 network-manager-applet
 tlp
 grim
@@ -58,9 +57,7 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
-yazi
-ttf-inconsolata-nerd
-ttf-jetbrains-mono-nerd
+ttf-0xproto-nerd
 ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-common
 ttf-vista-fonts
@@ -80,6 +77,5 @@ lame
 libdca
 libmad
 pureref
-aichat
 wev
 nwg-displays

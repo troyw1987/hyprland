@@ -39,9 +39,11 @@ Apps:
 ```
 Tofi(App launcher) [SUPER+R]
 Kitty(Terminal) [SUPER+Enter]
+Firefox (Web Browser) [App Launcher]
 Vesktop(Discord) [App Launcher]
 Pureref(Image References) [App Launcher]
 Nemo(File Manager) [App Launcher]
+Okular(Document Reader) [App Launcher]
 Btop(Task Manager) [Terminal]
 ```
 

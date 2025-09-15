@@ -32,7 +32,7 @@
     "format": "{}󰔄 ",
     "tooltip": true,
     "interval": 3600,
-    "exec": "wttrbar --hide-conditions --ampm --location '$(curl ipinfo.io/city)'",
+    "exec": "wttrbar --hide-conditions --ampm --location $(curl ipinfo.io/city)",
     "return-type": "json"
   },
   "tray": {

@@ -6,24 +6,24 @@ I 100% guarantee something will break when using any non-intended devices or you
 # Installation
 
 ```
-1. Start with a minimal Arch install.
-(Only requires networking is set up and git is installed)
+1. Start with a minimal Arch install. 
+(Ensure you at least have git, wifi, pipewire and multilib support enabled in pacman)
 (Installer will detect if Yay must be installed when ran)
-2. make a `~/git` folder or similar to clone this repo then use `chown -R ~/git/hyprland` to assign your user permissions.
-3. run `~/git/hyprland/set-hypr` and follow install.
+2. make a `~/git` folder or similar. Then clone this repo into it.
+3. run `set-hypr` within hyprland folder and follow installation.
 (while setting the terminal to ZSH, you must type `exit` afterwards to continue the install)
-4. It will ask to launch. Either A:say 'y' to launch or, B: say 'n' and type `Hyprland` into console or, C: restart pc and it will boot into the greeter
-5. Enjoy
+4. Enjoy, follow script or restart computer to boot into Hyprland.
 ```
 
 # Post Installation
 
-Beware that I disable the SD Card reader, as recommended to save power.
+Beware that I disable the SD Card reader on the T480S, as recommended to save power.
 To re-enable SD Card: `sudo echo 2-3 > sudo sys/bus/usb/drivers/usb/bind`
 Modify this to your heart's content!
 
 
 Notable places to configure things:
+~/.config/*
 `~/.config/hypr/*`
 `~/.config/hypr/hyprland/*`
 `~/.oh-my-zsh`

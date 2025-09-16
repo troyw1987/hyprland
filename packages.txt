@@ -9,13 +9,14 @@ hyprlock
 waybar
 swaybg
 greetd
-greetd-tuigreet-bin
+greetd-tuigreet
 mesa
 lib32-mesa
 mesa-utils
 vulkan-intel
 lib32-vulkan-intel
 tofi
+rofi
 firefox
 vesktop-bin
 nemo

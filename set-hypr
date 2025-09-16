@@ -44,7 +44,7 @@ fi
 read -n1 -rep 'Would you like to set your shell to ZSH? y,n: ' ZSH
 if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
   printf "${BPurple}\nChanging shell to ZSH:\n${NC}"
-  sudo chsh -s $(which zsh)
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 ### Copy Config Files ###
@@ -85,14 +85,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
   sudo cp -r ./config/zsh/plugins/zsh-lsd ~/.oh-my-zsh/plugins/
 
-  #yazi:
-  ya pack -a yazi-rs/flavors:catppuccin-mocha
-
-  # tpm:
-  printf "${BPurple}\nInstalling Tmux TPM${NC}"
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  sudo cp ./config/tmux/.tmux.conf ~/.tmux.conf
-
   # gtk theme:
   sudo cp -r ./root/gtk/theme/Dracula/ /usr/share/themes/
   sudo cp -r ./root/gtk/icons/Dracula/ /usr/share/icons/
@@ -122,7 +114,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
   # Set some files as executable
   sudo chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
-  sudo chmod +x ~/.config/waybar/scripts/weather.sh
 
   # Default settings:
   gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty

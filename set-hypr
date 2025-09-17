@@ -52,6 +52,7 @@ read -n1 -rep 'Would you like to copy config files and start? y/n: ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
   printf "${BPurple}Copying config files...${NC}\n"
 
+  sudo chown -R $USER:$USER ./
   sudo cp -R ./config/* ~/.config/
 
   ### Root Changes: ###
@@ -131,6 +132,8 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
   # CHOWNING everything to make it all work:
   sudo chown -R $USER:$USER ~/
+  sudo chown -R $USER:$USER ~/.local/
+  sudo chown -R $USER:$USER ~/.cache/
 
 fi
 

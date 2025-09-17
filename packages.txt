@@ -24,6 +24,7 @@ lxappearance
 xfce4-settings
 btop
 neovim
+tree-sitter-cli
 zsh
 ffmpeg
 viu

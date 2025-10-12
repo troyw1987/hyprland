@@ -10,6 +10,8 @@ waybar
 swaybg
 greetd
 greetd-tuigreet
+wl-clipboard
+pavucontrol
 mesa
 lib32-mesa
 mesa-utils

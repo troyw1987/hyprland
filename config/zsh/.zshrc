@@ -110,12 +110,11 @@ alias ls="lsd -a"
 #
 #
 
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+function pacupdate(){
+  echo "Removing orphans -> 'pacman -Qdtq | sudo pacman -Rns -'"
+  pacman -Qdtq | sudo pacman -Rns -
+  echo "Using yay to update -> yay -Syu"
+  yay -Syu
 }
 
 

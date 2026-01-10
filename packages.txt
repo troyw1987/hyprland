@@ -83,3 +83,7 @@ libmad
 pureref
 wev
 nwg-displays
+dosfstools
+gptfdisk
+exfatprogs
+ntfs-3g

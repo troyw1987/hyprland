@@ -88,3 +88,4 @@ gptfdisk
 exfatprogs
 ntfs-3g
 wget
+lsof

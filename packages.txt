@@ -87,3 +87,4 @@ dosfstools
 gptfdisk
 exfatprogs
 ntfs-3g
+wget

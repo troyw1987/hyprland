@@ -109,7 +109,7 @@
     "on-scroll-up": "pamixer -i 5",
     "on-scroll-down": "pamixer -d 5",
     "scroll-step": 5,
-    "tooltip-format": "{desc}\n{volume}% {icon}",
+    "tooltip-format": "{volume}% {icon}",
     "format-icons": {
       "headphone": "󰋋",
       "hdmi": "󰡁",

@@ -30,6 +30,9 @@ btop
 neovim
 tree-sitter-cli
 zsh
+pipewire
+pipewire-pulse
+wireplumber
 pamixer
 brightnessctl
 bluez

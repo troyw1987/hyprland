@@ -73,6 +73,9 @@ if [[ $CFG =~ ^["Yy"] ]]; then
   printf "${BPurple} Starting bluetooth service... ${NC}\n"
   sudo systemctl enable --now bluetooth.service
 
+  printf "${BPurple} Starting PipeWire-Pulse services... ${NC}\n"
+  systemctl --user --now enable pipewire pipewire-pulse wireplumber
+
   # grub:
   printf "${BPurple} Copying grub configuration... ${NC}\n"
   sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/

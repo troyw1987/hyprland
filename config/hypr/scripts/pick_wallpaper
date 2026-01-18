@@ -1,0 +1,9 @@
+WALL=$(hyprwat --wallpaper ~/.config/hypr/wallpapers | tail -n 1)
+
+echo $WALL
+hyprctl hyprpaper preload "$WALL"
+
+
+STR="eDP-1,$WALL,cover"
+echo $STR
+hyprctl hyprpaper wallpaper "eDP-1, $WALL, cover"

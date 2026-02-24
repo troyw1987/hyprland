@@ -10,130 +10,131 @@ NC='\033[0m'
 #### Check for yay ####
 ISYAY=/sbin/yay
 if [ -f "$ISYAY" ]; then
-  printf "${BPurple}\n yay was located, moving on.${NC}\n"
+	printf "${BPurple}\n yay was located, moving on.${NC}\n"
 else
-  printf "${BRed}\n Unable to continue install without yay.${NC}\n Please install yay with:\n git clone https://aur.archlinux.org/yay.git \n cd yay \n makepkg -sic\n"
-  exit
+	printf "${BRed}\n Unable to continue install without yay.${NC}\n Please install yay with:\n git clone https://aur.archlinux.org/yay.git \n cd yay \n makepkg -sic\n"
+	exit
 fi
 
 #### Ensure user chowned properly ####
 read -n1 -rep ' Have you ran "chown --recursive youruser:youruser" on this hyprland folder? y/n: ' HCN
 if [[ $HCN =~ ^[Nn] ]]; then
-  printf "${BRed} Please do that first - Aborting.${NC}\n"
-  exit
+	printf "${BRed} Please do that first - Aborting.${NC}\n"
+	exit
 fi
 
 ### Install pacakges ####
 read -n1 -rep ' Would you like to install the packages? y/n: ' INST
 if [[ $INST =~ ^[Yy] ]]; then
-  printf "${BPurple} Updating packages with yay -Syu... ${NC}\n"
-  yay -Syu
-  printf "${BPurple} Installing dependency and tool packages with yay -S - <... ${NC}\n"
-  yay -S - <./packages/dependancies-tools.txt
-  printf "${BPurple} Installing essential Hyprland packages with yay -S - <... ${NC}\n"
-  yay -S - <./packages/hyprland_essentials.txt
+	printf "${BPurple} Updating packages with yay -Syu... ${NC}\n"
+	yay -Syu
+	printf "${BPurple} Installing dependency and tool packages with yay -S - <... ${NC}\n"
+	yay -S - <./packages/dependancies-tools.txt
+	printf "${BPurple} Installing essential Hyprland packages with yay -S - <... ${NC}\n"
+	yay -S - <./packages/hyprland_essentials.txt
 
-  # Install live-server for nvim
-  pnpm add -g live-server
-  pnpm fund
+	# Install live-server for nvim, bacon for faster rust nvim
+	cargo install bacon
+	pnpm add -g live-server
+	pnpm fund
 fi
 
 ### Set zsh as shell ###
 read -n1 -rep ' Would you like to set your shell to ZSH? y/n: ' ZSH
 if [[ $ZSH =~ ^[Yy] ]]; then
-  printf "${BPurple}\n Changing shell to ZSH:\n Please answer ohmyzsh prompts\n when shell is changed, type 'exit'${NC}"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	printf "${BPurple}\n Changing shell to ZSH:\n Please answer ohmyzsh prompts\n when shell is changed, type 'exit'${NC}"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 ### Copy Config Files ###
 read -n1 -rep ' Would you like to copy config files and start? y/n: ' CFG
 if [[ $CFG =~ ^["Yy"] ]]; then
-  printf "${BPurple} Copying ~/.config files...${NC}\n"
-  sudo cp -R ./config/* ~/.config/
+	printf "${BPurple} Copying ~/.config files...${NC}\n"
+	sudo cp -R ./config/* ~/.config/
 
-  ### Root Changes: ###
+	### Root Changes: ###
 
-  # Disable power-draining SD card reader:
-  printf "${BPurple} Disabling SD reader for battery... ${NC}\n"
-  echo "2-3" | sudo tee /sys/bus/usb/drivers/usb/unbind
+	# Disable power-draining SD card reader:
+	printf "${BPurple} Disabling SD reader for battery... ${NC}\n"
+	echo "2-3" | sudo tee /sys/bus/usb/drivers/usb/unbind
 
-  # enable daemons.
-  printf "${BPurple} Starting tlp service for power management... ${NC}\n"
-  sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
-  sudo systemctl enable --now tlp.service
+	# enable daemons.
+	printf "${BPurple} Starting tlp service for power management... ${NC}\n"
+	sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
+	sudo systemctl enable --now tlp.service
 
-  printf "${BPurple} Starting throttled service for intel throttling bypass... ${NC}\n"
-  sudo cp ./root/throttled/throttled.conf /etc/throttled.conf
-  sudo systemctl enable --now throttled.service
+	printf "${BPurple} Starting throttled service for intel throttling bypass... ${NC}\n"
+	sudo cp ./root/throttled/throttled.conf /etc/throttled.conf
+	sudo systemctl enable --now throttled.service
 
-  printf "${BPurple} Starting reflector service for automatic pacman mirrorlist updates... ${NC}\n"
-  sudo cp ./root/reflector/reflector.conf /etc/xdg/reflector/reflector.conf
-  sudo systemctl enable --now reflector.service reflector.timer
+	printf "${BPurple} Starting reflector service for automatic pacman mirrorlist updates... ${NC}\n"
+	sudo cp ./root/reflector/reflector.conf /etc/xdg/reflector/reflector.conf
+	sudo systemctl enable --now reflector.service reflector.timer
 
-  printf "${BPurple} Starting bluetooth service... ${NC}\n"
-  sudo systemctl enable --now bluetooth.service
+	printf "${BPurple} Starting bluetooth service... ${NC}\n"
+	sudo systemctl enable --now bluetooth.service
 
-  printf "${BPurple} Starting PipeWire-Pulse services... ${NC}\n"
-  systemctl --user --now enable pipewire pipewire-pulse wireplumber
+	printf "${BPurple} Starting PipeWire-Pulse services... ${NC}\n"
+	systemctl --user --now enable pipewire pipewire-pulse wireplumber
 
-  # grub:
-  printf "${BPurple} Copying grub configuration... ${NC}\n"
-  sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
-  sudo cp ./root/grub/grub /etc/default/grub
+	# grub:
+	printf "${BPurple} Copying grub configuration... ${NC}\n"
+	sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
+	sudo cp ./root/grub/grub /etc/default/grub
 
-  printf "${BPurple} Running grub-mkconfig to generate bootloader configuration... ${NC}\n"
-  sudo grub-mkconfig -o /boot/grub/grub.cfg
+	printf "${BPurple} Running grub-mkconfig to generate bootloader configuration... ${NC}\n"
+	sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-  ### Userspace/.config Changes: ###
+	### Userspace/.config Changes: ###
 
-  # zsh:
-  printf "${BPurple} Copying zsh themes, plugins and ~/.zshrc... ${NC}\n"
-  sudo cp ./config/zsh/themes/heapbytes.zsh-theme ~/.oh-my-zsh/themes
-  sudo cp ./config/zsh/.zshrc ~/.zshrc
-  sudo cp -r ./config/zsh/plugins/zsh-lsd ~/.oh-my-zsh/plugins/
+	# zsh:
+	printf "${BPurple} Copying zsh themes, plugins and ~/.zshrc... ${NC}\n"
+	sudo cp ./config/zsh/themes/heapbytes.zsh-theme ~/.oh-my-zsh/themes
+	sudo cp ./config/zsh/.zshrc ~/.zshrc
+	sudo cp -r ./config/zsh/plugins/zsh-lsd ~/.oh-my-zsh/plugins/
 
-  # gtk theme:
-  printf "${BPurple} Copying gtk Dracula theme and icons... ${NC}\n"
-  sudo cp -r ./root/gtk/theme/Dracula/ /usr/share/themes/
-  sudo cp -r ./root/gtk/icons/Dracula/ /usr/share/icons/
+	# gtk theme:
+	printf "${BPurple} Copying gtk Dracula theme and icons... ${NC}\n"
+	sudo cp -r ./root/gtk/theme/Dracula/ /usr/share/themes/
+	sudo cp -r ./root/gtk/icons/Dracula/ /usr/share/icons/
 
-  printf "${BPurple} Setting gtk theme to Dracula... ${NC}\n"
-  gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-  gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
-  gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+	printf "${BPurple} Setting gtk theme to Dracula... ${NC}\n"
+	gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+	gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+	gsettings set org.gnome.desktop.interface icon-theme "Dracula"
 
-  # gtk/swaync/cursors (AKA THEMING SECTION):
-  printf "${BPurple} Copying swaync configurations... ${NC}\n"
-  sudo cp ./config/gtk/.gtkrc-2.0.mime ~/.gtkrc-2.0.mime
+	# gtk/swaync/cursors (AKA THEMING SECTION):
+	printf "${BPurple} Copying swaync configurations... ${NC}\n"
+	sudo cp ./config/gtk/.gtkrc-2.0.mime ~/.gtkrc-2.0.mime
 
-  sudo mkdir -p ~/.config/swaync
-  sudo cp ./config/swaync/style.css ~/.config/swaync/style.css
-  sudo cp ./config/swaync/config.json ~/.config/swaync/config.json
+	sudo mkdir -p ~/.config/swaync
+	sudo cp ./config/swaync/style.css ~/.config/swaync/style.css
+	sudo cp ./config/swaync/config.json ~/.config/swaync/config.json
 
-  printf "${BPurple} Setting cursor to macOS theme... ${NC}\n"
-  sudo mkdir -p ~/.local/share/icons/default
-  sudo ln --symbolic /usr/share/icons/macOS ~/.local/share/icons/default/
-  gsettings set org.gnome.desktop.interface cursor-theme macOS
+	printf "${BPurple} Setting cursor to macOS theme... ${NC}\n"
+	sudo mkdir -p ~/.local/share/icons/default
+	sudo ln --symbolic /usr/share/icons/macOS ~/.local/share/icons/default/
+	gsettings set org.gnome.desktop.interface cursor-theme macOS
 
-  printf "${BPurple} Copying XFCE configurations... ${NC}\n"
-  sudo mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml/
-  sudo cp ./config/xfce4/xsettings.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+	printf "${BPurple} Copying XFCE configurations... ${NC}\n"
+	sudo mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml/
+	sudo cp ./config/xfce4/xsettings.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
-  printf "${BPurple} Git cloning LazyVim starter into Neovim... ${NC}\n"
-  mkdir ~/.config/nvim
-  git clone https://github.com/LazyVim/starter ~/.config/nvim
-  rm -rf ~/.config/nvim/.git
+	printf "${BPurple} Git cloning LazyVim starter into Neovim... ${NC}\n"
+	mkdir ~/.config/nvim
+	git clone https://github.com/LazyVim/starter ~/.config/nvim
+	rm -rf ~/.config/nvim/.git
 
-  # Set some files as executable
-  sudo chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
+	# Set some files as executable
+	sudo chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
 
-  # Default settings:
-  gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+	# Default settings:
+	gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 
-  # greetd:
-  printf "${BPurple}\nCopying Greetd confucuration and starting...${NC}"
-  sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
-  sudo systemctl enable --now greetd.service
+	# greetd:
+	printf "${BPurple}\nCopying Greetd confucuration and starting...${NC}"
+	sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
+	sudo systemctl enable --now greetd.service
 fi
 
 printf "\n${BPurple} Troy's Hyprland script has completed!${NC}\n Have a nice day\n"

@@ -2,10 +2,12 @@
   "layer": "top",
   "position": "top",
   "mod": "dock",
+  "margin-top": 5,
+  "margin-left": 0,
+  "margin-right": 0,
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 25,
   "modules-left": [
     "clock",
     "custom/weather",
@@ -32,7 +34,7 @@
     "format": "{}󰔄 ",
     "tooltip": true,
     "interval": 3600,
-    "exec": "wttrbar --hide-conditions --ampm --location $(curl ipinfo.io/city)",
+    "exec": "timeout 10s wttrbar --hide-conditions --ampm --location $(curl -s --max-time 300 ipinfo.io/city)",
     "return-type": "json"
   },
   "tray": {
@@ -155,8 +157,9 @@
     "format-wifi": "{icon}",
     "format-ethernet": "{ipaddr}/{cidr}",
     "tooltip-format": "󰖩   '{essid}'\n󰿗   '{signalStrength}%'\n\n   '{ifname}'\n󰩟   '{gwaddr}'",
-    "format-linked": "{ifname} (No IP)",
+    "format-linked": "󱦂",
     "format-disconnected": "󰤮",
+    "format-disabled": "󰤭",
     "on-click": "nm-applet",
     "format-icons": {
       "default": [

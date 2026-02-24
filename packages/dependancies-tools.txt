@@ -1,4 +1,5 @@
 ffmpeg
+base-devel
 viu
 ripgrep
 jq
@@ -29,3 +30,5 @@ lsof
 pacman-contrib
 pnpm
 npm
+wps-office
+ttf-wps-fonts

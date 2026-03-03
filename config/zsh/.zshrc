@@ -93,8 +93,8 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 alias restartwaybar="pkill waybar && hyprctl dispatch exec waybar"
-
 alias ls="lsd -a"
+alias n="nvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -110,6 +110,15 @@ alias ls="lsd -a"
 #
 #
 
+function reminders(){
+	if [[ ~/Documents/reminder.txt ]] then
+		kitty --class "floating-reminder" nvim ~/Documents/reminder.txt
+	else
+		echo "Enter your reminders here, they will be shown on startup." > ~/Documents/reminder.txt
+		kitty --class "floating-reminder" nvim ~/Documents/reminder.txt
+	fi
+}
+
 function pacupdate(){
   echo "Removing orphans -> 'pacman -Qdtq | sudo pacman -Rns -'"
   pacman -Qdtq | sudo pacman -Rns -
@@ -117,6 +126,7 @@ function pacupdate(){
   yay -Syu
 }
 
+alias lpath='eval $(luarocks path --bin)'
 
 export GOPATH=$HOME/go 
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin

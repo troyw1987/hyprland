@@ -27,10 +27,13 @@ Kitty(terminal) [SUPER+Enter]
 Waybar(topbar) [autoruns]
 
 Firefox (Web Browser) [Rofi]
-Pureref(Image References) [Rofi]
-Nemo(File Manager) [Rofi]
+Vesktop (Discord Client) [Rofi]
 
-Btop(Task Manager) [Kitty]
+Btop(Task Manager) [Rofi]
+Nemo(File Manager) [Rofi]
+Tlp UI(Power Manager) [Rofi]
+
+Pureref(Image References) [Rofi]
 
 Network Manager [Waybar wifi icon]
 Bluetooth Manager [Waybar bluetooth icon)

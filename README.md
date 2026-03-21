@@ -29,7 +29,6 @@ Waybar(topbar) [autoruns]
 Firefox (Web Browser) [Rofi]
 Pureref(Image References) [Rofi]
 Nemo(File Manager) [Rofi]
-Okular(Document Reader) [Rofi]
 
 Btop(Task Manager) [Kitty]
 

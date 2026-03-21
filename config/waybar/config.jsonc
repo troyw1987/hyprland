@@ -33,8 +33,8 @@
   "custom/weather": {
     "format": "{}󰔄 ",
     "tooltip": true,
-    "interval": 3600,
-    "exec": "timeout 10s wttrbar --hide-conditions --ampm --location $(curl -s --max-time 300 ipinfo.io/city)",
+    "interval": "once",
+    "exec": "cat $HOME/.cache/waybar-weather.json",
     "return-type": "json"
   },
   "tray": {

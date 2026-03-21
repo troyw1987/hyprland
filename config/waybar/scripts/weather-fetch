@@ -1,0 +1,4 @@
+#!/bin/bash
+CACHE="$HOME/.cache/waybar-weather.json"
+CITY=$(curl -s --max-time 10 ipinfo.io/city)
+timeout 10s wttrbar --hide-conditions --ampm --location "$CITY" >"$CACHE"

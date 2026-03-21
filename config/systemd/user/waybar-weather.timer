@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh weather once daily
+
+[Timer]
+OnBootSec=30s
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

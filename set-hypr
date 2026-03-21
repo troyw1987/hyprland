@@ -131,6 +131,10 @@ if [[ $CFG =~ ^["Yy"] ]]; then
 	# Default settings:
 	gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 
+	printf "${BPurple}\nStarting waybar's weather service and timer...${NC}"
+	sudo systemctl --user enable --now waybar-weather.timer
+	sudo systemctl --user start waybar-weather.service
+
 	# greetd:
 	printf "${BPurple}\nCopying Greetd confucuration and starting...${NC}"
 	sudo cp ./root/greetd/config.toml /etc/greetd/config.toml

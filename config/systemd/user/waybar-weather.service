@@ -1,0 +1,6 @@
+[Unit]
+Description=Fetch weather for Waybar
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/waybar/scripts/weather-fetch

@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = linux
+
+[Action]
+Description = Kernel updated — reboot required!
+When = PostTransaction
+Exec = /usr/bin/echo "⚠️  Kernel updated. Reboot before loading new modules."

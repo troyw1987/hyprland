@@ -1,0 +1,1 @@
+[ -f ~/Documents/reminder.txt ] && kitty --class "floating-reminder" nvim ~/Documents/reminder.txt 

@@ -1,0 +1,1 @@
+pgrep slurp || (mkdir -p ~/Documents/screenshots && grim -g "$(slurp -d)" - | tee ~/Documents/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy) 

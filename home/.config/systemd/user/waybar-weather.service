@@ -1,6 +1,11 @@
 [Unit]
 Description=Fetch weather for Waybar
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
 ExecStart=%h/.config/waybar/scripts/weather-fetch
+
+[Install]
+WantedBy=default.target

@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh weather once daily
+Description=Fetch weather data for waybar once daily and on boot
 
 [Timer]
 OnBootSec=30s

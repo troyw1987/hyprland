@@ -46,6 +46,7 @@ slurp
 reflector
 throttled
 lsd
+wavemon
 wttrbar
 apple_cursor
 noto-fonts

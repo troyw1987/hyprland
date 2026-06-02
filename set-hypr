@@ -94,6 +94,8 @@ if [[ $CFG =~ ^["Yy"] ]]; then
 
 	### Userspace/.config Changes: ###
 
+	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # dark-theming
+
 	printf "${BPurple} Setting gtk theme to Dracula... ${NC}\n"
 	gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 	gsettings set org.gnome.desktop.wm.preferences theme "Dracula"

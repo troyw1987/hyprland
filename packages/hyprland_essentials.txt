@@ -1,9 +1,13 @@
 hyprland
-zsh
 swaync
 polkit-gnome
 xdg-desktop-portal-hyprland
 kitty
+spotify-player
+zsh
+btop
+neovim
+tree-sitter-cli
 pureref
 hypridle
 hyprlock
@@ -26,10 +30,6 @@ vesktop-bin
 nemo
 lxappearance
 xfce4-settings
-btop
-neovim
-tree-sitter-cli
-zsh
 pipewire
 pipewire-pulse
 wireplumber

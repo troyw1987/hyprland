@@ -30,13 +30,18 @@
     "all-outputs": true,
     "on-click": "activate"
   },
-  "custom/weather": {
-    "format": "{}󰔄 ",
+
+"custom/weather": {
+    "format": "{}",
     "tooltip": true,
-    "interval": "once",
-    "exec": "cat $HOME/.cache/waybar-weather.json",
-    "return-type": "json"
-  },
+    "markup": true,
+    "interval": 1800,
+    "signal": 8,
+    "return-type": "json",
+	"exec": "bash --norc -c ~/.config/waybar/scripts/weather-fetch",
+    "on-click": "pkill -RTMIN+8 waybar"
+},
+
   "tray": {
     "icon-size": 18,
     "spacing": 10
@@ -80,14 +85,14 @@
   "battery": {
     "states": {
       "good": 60,
-      "warning": 30,
-      "critical": 20
+      "warning": 50,
+      "critical": 40
     },
-    "format": "{icon} {capacity}%",
-    "format-discharging": "{icon} {capacity}%",
-    "format-charging": "󱐋 {capacity}%",
-    "format-plugged": "󱐋󰚥 {capacity}%",
-    "format-alt": "{time} {icon}",
+    "format": "{icon}{capacity}%",
+    "format-discharging": "{icon}{capacity}%",
+    "format-charging": "󱐋{capacity}%",
+    "format-plugged": "󰚥{capacity}%",
+    "format-alt": "{time}{icon}",
     "format-icons": [
       "󱟩",
       "󰂎",

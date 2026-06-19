@@ -1,4 +1,32 @@
-#!/bin/bash
-CACHE="$HOME/.cache/waybar-weather.json"
-CITY=$(curl -s --max-time 10 ipinfo.io/city)
-timeout 10s wttrbar --hide-conditions --ampm --location "$CITY" >"$CACHE"
+#!/usr/bin/bash
+
+text=$(curl -s 'https://wttr.in/?m&format=%t')
+tooltip=$(curl -s 'https://wttr.in/?m0' | python3 ~/.config/waybar/scripts/ansi2pango.py)
+
+# Extract the numeric temperature (handles leading + or -)
+temp=$(grep -oE '[+-]?[0-9]+' <<<"$text" | head -1)
+temp=${temp:-0}
+
+# Map temperature to a color, coldest to hottest
+if ((temp <= 0)); then
+	color="#ffffff" # white
+elif ((temp <= 10)); then
+	color="#87ceeb" # light blue
+elif ((temp <= 18)); then
+	color="#4169e1" # blue
+elif ((temp <= 24)); then
+	color="#32cd32" # green
+elif ((temp <= 30)); then
+	color="#ffff00" # yellow
+elif ((temp <= 35)); then
+	color="#ffa500" # orange
+else
+	color="#ff4500" # red
+fi
+
+colored_text="<span foreground='$color'>$text</span>"
+
+jq -n -c \
+	--arg text "$colored_text" \
+	--arg tooltip "<span font_family='monospace'>$tooltip</span>" \
+	'{text: $text, tooltip: $tooltip}'

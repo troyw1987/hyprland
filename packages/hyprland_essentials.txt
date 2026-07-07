@@ -46,6 +46,7 @@ slurp
 reflector
 throttled
 lsd
+gocryptfs
 speedtest-cli
 wavemon
 wttrbar

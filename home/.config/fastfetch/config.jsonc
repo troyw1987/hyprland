@@ -16,6 +16,12 @@
       "type": "custom",
       "format": "┌──────────────────────────────────────────┐",
     },
+	{
+		"type": "host",
+		"format": "Lenovo Thinkpad T480s",
+		"key": "  Make & Model",
+		"keyColor": "red"
+	},
     {
       "type": "os",
       "key": "  OS",

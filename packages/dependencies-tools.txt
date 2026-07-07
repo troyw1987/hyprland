@@ -32,4 +32,5 @@ pnpm
 npm
 wps-office
 ttf-wps-fonts
+libtiff5
 blueman

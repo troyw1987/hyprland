@@ -10,32 +10,43 @@ NC='\033[0m'
 #### Check for yay ####
 ISYAY=/sbin/yay
 if [ -f "$ISYAY" ]; then
-	printf "${BPurple}\n yay was located, moving on.${NC}\n"
+	printf "yay was located\n"
 else
-	printf "${BRed}\n Unable to continue install without yay.${NC}\n Please install yay with:\n git clone https://aur.archlinux.org/yay.git \n cd yay \n makepkg -sic\n"
+	printf "${BRed}\n Unable to continue install without yay.\nPlease install yay with:\n1. 'git clone https://aur.archlinux.org/yay.git'\n2.'cd yay' \n3. 'makepkg -sic'\n"
 	exit
 fi
 
-#### Ensure user chowned properly ####
-read -n1 -rep ' Have you ran "chown --recursive youruser:youruser" on this hyprland folder? y/n: ' HCN
-if [[ $HCN =~ ^[Nn] ]]; then
-	printf "${BRed} Please do that first - Aborting.${NC}\n"
-	exit
+#### Ensure user owns the hyprland folder ####
+TARGET_DIR="."
+
+# Find any file/dir not owned by the current user
+BAD_OWNER=$(find "$TARGET_DIR" ! -user "$(id -u)" -print -quit)
+if [[ -n "$BAD_OWNER" ]]; then # chowns the directory to prevent permission mismanagment, causing issues.
+	printf "${BRed}Files not owned by $(whoami) (%s), exiting.. \nplease run 'chown --recursive %s:%s %s' from within the folder to make this script work.${NC}\n" \
+		"$BAD_OWNER" "$(whoami)" "$(whoami)" "$TARGET_DIR"
+	exit 1
 fi
+echo "$BAD_OWNER"
 
 ### Install Packages ####
 read -n1 -rep ' Would you like to install the packages? y/n: ' INST
 if [[ $INST =~ ^[Yy] ]]; then
-	printf "${BPurple} Updating packages with yay -Syu... ${NC}\n"
+	printf "${BPurple} Updating packages with yay -Syu...\n"
 	yay -Syu
-	printf "${BPurple} Installing dependency and tool packages with yay -S - <... ${NC}\n"
+	printf "Installing dependency and tool packages with yay -S - < ./packages/dependencies-tools.txt \n"
 	yay -S - <./packages/dependencies-tools.txt
-	printf "${BPurple} Installing essential Hyprland packages with yay -S - <... ${NC}\n"
+	printf "Installing essential Hyprland packages with yay -S - < ./packages/hyprland_essentials.txt ${NC}\n"
 	yay -S - <./packages/hyprland_essentials.txt
 
 	# Install live-server for nvim, bacon for faster rust nvim
 	cargo install bacon
 	pnpm add -g live-server
+fi
+
+read -n1 -rep ' Would you like to install from the custom package list? y/n: ' CUSTOM
+if [[ $CUSTOM =~ ^[Yy] ]]; then
+	printf "${BPurple} Installing custom Hyprland packages with yay -S - < ./packages/custompackages.txt ${NC}\n"
+	yay -S - <./packages/custompackages.txt
 fi
 
 ### Set zsh as shell ###
@@ -48,47 +59,47 @@ fi
 ### Copy Config Files ###
 read -n1 -rep ' Would you like to copy config files and start? y/n: ' CFG
 if [[ $CFG =~ ^["Yy"] ]]; then
-	printf "${BPurple} Copying all ~/* files...${NC}\n"
+	printf "${BPurple} Copying all ~/* files...\n"
 	cp -r ./home/.* ~/
 
 	### Root Changes: ###
 
-	printf "${BPurple} Copying pacman hooks... ${NC}\n"
+	printf "Copying pacman hooks... ${NC}\n"
 	sudo cp -r ./root/pacman/hooks /etc/pacman.d
 
 	# Disable power-draining SD card reader:
-	printf "${BPurple} Disabling SD reader for battery... ${NC}\n"
+	printf "Disabling SD reader for battery...\n"
 	echo "2-3" | sudo tee /sys/bus/usb/drivers/usb/unbind
 
 	# enable daemons.
-	printf "${BPurple} Starting tlp service for power management... ${NC}\n"
+	printf "Starting tlp service for power management...\n"
 	sudo cp ./root/tlp/tlp.conf /etc/tlp.conf
 	sudo systemctl enable --now tlp.service
 
-	printf "${BPurple} Starting throttled service for intel throttling bypass... ${NC}\n"
+	printf "Starting throttled service for intel throttling bypass...\n"
 	sudo cp ./root/throttled/throttled.conf /etc/throttled.conf
 	sudo systemctl enable --now throttled.service
 
-	printf "${BPurple} Starting reflector service for automatic pacman mirrorlist updates... ${NC}\n"
+	printf "Starting reflector service for automatic pacman mirrorlist updates...\n"
 	sudo cp ./root/reflector/reflector.conf /etc/xdg/reflector/reflector.conf
 	sudo systemctl enable --now reflector.service reflector.timer
 
-	printf "${BPurple} Starting bluetooth service... ${NC}\n"
+	printf "Starting bluetooth service...\n"
 	sudo systemctl enable --now bluetooth.service
 
-	printf "${BPurple} Starting PipeWire-Pulse services... ${NC}\n"
+	printf "Starting PipeWire-Pulse services...\n"
 	systemctl --user --now enable pipewire pipewire-pulse wireplumber
 
 	# grub:
-	printf "${BPurple} Copying grub configuration... ${NC}\n"
+	printf "Copying grub configuration...\n"
 	sudo cp -r ./root/grub/catppuccin-mocha-custom/ /usr/share/grub/themes/
 	sudo cp ./root/grub/grub /etc/default/grub
 
-	printf "${BPurple} Running grub-mkconfig to generate bootloader configuration... ${NC}\n"
+	printf "Running grub-mkconfig to generate bootloader configuration...\n"
 	sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 	# gtk theme:
-	printf "${BPurple} Copying gtk Dracula theme and icons... ${NC}\n"
+	printf "Copying gtk Dracula theme and icons...\n"
 	sudo cp -r ./root/gtk/theme/Dracula/ /usr/share/themes/
 	sudo cp -r ./root/gtk/icons/Dracula/ /usr/share/icons/
 
@@ -96,12 +107,12 @@ if [[ $CFG =~ ^["Yy"] ]]; then
 
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # dark-theming
 
-	printf "${BPurple} Setting gtk theme to Dracula... ${NC}\n"
+	printf "Setting gtk theme to Dracula...\n"
 	gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 	gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 	gsettings set org.gnome.desktop.interface icon-theme "Dracula"
 
-	printf "${BPurple} Setting cursor to macOS theme... ${NC}\n"
+	printf "Setting cursor to macOS theme...\n"
 	mkdir -p ~/.local/share/icons/default
 	sudo cp -r ./root/cursor/ /usr/share/icons/macOS
 
@@ -114,14 +125,14 @@ if [[ $CFG =~ ^["Yy"] ]]; then
 	# Default settings:
 	gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 
-	printf "${BPurple}\nStarting waybar's weather service and timer...${NC}"
+	printf "\nStarting waybar's weather service and timer..."
 	systemctl --user daemon-reload
 	systemctl --user enable --now waybar-weather.timer
 
 	# greetd:
-	printf "${BPurple}\nCopying Greetd configuration and starting...${NC}"
+	printf "\nCopying Greetd configuration and starting...${NC}"
 	sudo cp ./root/greetd/config.toml /etc/greetd/config.toml
 	sudo systemctl enable --now greetd.service
 fi
 
-printf "\n${BPurple} Troy's Hyprland script has completed!${NC}\n Have a nice day\n"
+printf "\n${BPurple}Troy's Hyprland setup script has completed!${NC}\nHave a nice day\n"

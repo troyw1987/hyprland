@@ -83,6 +83,7 @@
     "on-scroll-down": "brightnessctl set 1%-"
   },
   "battery": {
+	"on-click-right": "tlpui",
     "states": {
       "good": 60,
       "warning": 50,
@@ -166,6 +167,8 @@
     "format-disconnected": "󰤮",
     "format-disabled": "󰤭",
     "on-click": "nm-applet",
+    "on-click-right": "kitty wavemon",
+    "on-click-middle": "kitty speedtest",
     "format-icons": {
       "default": [
         "󰤫",

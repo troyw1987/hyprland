@@ -1,0 +1,12 @@
+wps-office
+ttf-wps-fonts
+libtiff5
+vesktop-bin
+steam
+spotify-player
+retroarch
+retroarch-assets-ozone
+retroarch-assets-xmb
+gimp
+thorium-browser-bin
+prismlauncher

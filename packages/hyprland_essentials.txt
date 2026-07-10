@@ -9,6 +9,7 @@ xdg-user-dirs
 kitty
 spotify-player
 zsh
+zsh-completions
 btop
 neovim
 tree-sitter-cli

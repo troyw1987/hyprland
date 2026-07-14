@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# hypridle-toggle.sh
+# Toggles hypridle on/off and sends a swaync/notify-send notification.
+#
+# Then:    chmod +x ~/.config/hypr/scripts/hypridle-toggle.sh
+
+APP_NAME="Hypridle"
+
+if pgrep -x "hypridle" >/dev/null; then
+	# hypridle is running -> stop it
+	pkill -x hypridle
+
+	notify-send -a "$APP_NAME" \
+		-i "weather-clear-night" \
+		-u normal \
+		"Idle management disabled" \
+		"hypridle has been stopped. Your screen will not auto-lock or sleep."
+else
+	# hypridle is not running -> start it
+	hypridle &
+	disown
+
+	notify-send -a "$APP_NAME" \
+		-i "weather-clear" \
+		-u normal \
+		"Idle management enabled" \
+		"hypridle has been started. Normal idle/lock behavior restored."
+fi

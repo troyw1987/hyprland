@@ -12,18 +12,18 @@ hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd("rofi -show drun"), { release =
 hl.bind(mainMod .. " + " .. "F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo()) -- dwindle
 
-hl.bind(mainMod .. " + " .. "left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + " .. "left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + " .. "right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + " .. "up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + " .. "down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + " .. "up", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + " .. "down", hl.dsp.focus({ direction = "down" }))
 
 for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
-    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	local key = i % 10 -- 10 maps to key 0
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 end
 
 for i = 1, 9 do
-    hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 -- NOTE: original config's SUPER+SHIFT+0 sent the window to workspace 1 (not 10) - preserved as-is
 hl.bind(mainMod .. " + SHIFT + " .. 0, hl.dsp.window.move({ workspace = 1 }))
@@ -38,6 +38,8 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("Print", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot"))
 
 hl.bind(mainMod .. " + " .. "w", hl.dsp.exec_cmd("~/.config/hypr/scripts/pick_wallpaper"))
+hl.bind(mainMod .. " + " .. "i", hl.dsp.exec_cmd("~/.config/hypr/scripts/hypridle_toggle"))
+
 hl.bind(mainMod .. " + " .. "b", hl.dsp.exec_cmd("hyprshade toggle box_blur"))
 hl.bind(mainMod .. " + " .. "n", hl.dsp.exec_cmd("hyprshade toggle pixelate"))
 
@@ -60,9 +62,9 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pamixer --allow-boost -d 5"), {
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pamixer -t")) -- F1
 
 -- Ctrl keys:
-hl.bind("Control_L + Left",  hl.dsp.exec_cmd("playerctl previous"))
+hl.bind("Control_L + Left", hl.dsp.exec_cmd("playerctl previous"))
 hl.bind("Control_L + Right", hl.dsp.exec_cmd("playerctl next"))
-hl.bind("Control_L + Up",    hl.dsp.exec_cmd("playerctl play"))
-hl.bind("Control_L + Down",  hl.dsp.exec_cmd("playerctl pause"))
+hl.bind("Control_L + Up", hl.dsp.exec_cmd("playerctl play"))
+hl.bind("Control_L + Down", hl.dsp.exec_cmd("playerctl pause"))
 
 hl.bind("SUPER + T", hl.dsp.exec_cmd("killall -SIGUSR1 waybar")) -- Waybar toggle

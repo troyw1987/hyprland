@@ -97,7 +97,11 @@ The `set-hypr` script installs all packages automatically, but these are the cor
 
 ### Custom Packages
 
-Beyond the essentials above, the repo also installs a set of personal preference packages (extra CLI tools, PureRef, WPS Office, etc.). These aren't required for the config to function - feel free to skip installing them or edit the list to suit your own setup.
+**I highly recommend you read ./packages/custompackages.txt to add/remove software you do not want.**
+
+Beyond the essentials, the repo also installs packages of my personal preference (extra CLI tools, PureRef, WPS Office, Steam, spotify, Prismlauncher, etc.). These aren't required for the config to function - feel free to skip installing them in the `set-hypr` script and/or edit the list to suit your own setup then run `set-hypr` to install those packages you want. Or just learn to use yay like a sensible person. 
+
+Yes, Firefox is a dependancy, and not listed in `custompackages.txt` because I wouldn't want someone unfamiliar with the terminal to be stuck without a web browser after they remove them all.
 
 They're defined separately in:
 ```

@@ -232,8 +232,8 @@ This is a personal config shared for others to learn from or build on - not a pr
 
 Clone it, strip it down, bolt on your own scripts, swap the wallpaper daemon, change every keybind - whatever suits your workflow. Everything, at the end of the day, is a matter of opinion so don't limit yourself to mine.
 
-The most immediate and important things to change would be within `~/.config` `~/.config/hypr`, but especially `~/.config/hypr/settings`. Add/remove wallpapers at `~/.config/hypr/wallpapers`. 
+The most immediate and important things to change would be within `~/.config` `~/.config/hypr`, but especially `~/.config/hypr/settings`. Add/remove wallpapers at `~/.config/hypr/wallpapers`. Edit zsh within `~/.zshrc` (some secret functionality tidbits are in there). Edit oh-my-zsh, `~/.oh-my-zsh`, configure the Kitty Terminal `~/.config/kitty`, etc.
 
-For hyprland configuration, do not be afraid of LUA, it is an intuitive language, and you can always ask AI to make changes you want to keybinds, autolaunch, etc within `~/.config/hypr/settings`
+For hyprland configuration, do not be afraid of LUA, it is an intuitive language, and you can always ask AI to make changes you want: keybinds, autolaunch, etc. All within `~/.config/hypr/settings`
 
 YOU ARE FREE TO BRICK YOUR SYSTEM JUST AS THE FOUNDING FATHERS INTENDED :)

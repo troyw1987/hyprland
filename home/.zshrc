@@ -50,9 +50,7 @@ export SUDO_EDITOR="/usr/bin/nvim"
 # ============================================================
 alias n="nvim"
 alias restartwaybar="pkill waybar && hyprctl dispatch exec waybar"
-# ls="lsd" is already handled by the zsh-lsd plugin — remove if it's
-# double-aliasing (check with `alias ls`); kept here only as an override
-# in case the plugin's default flags don't match what you want.
+alias openreminders="nvim ~/Documents/reminder.txt"
 alias ls="lsd"
 
 # ============================================================

@@ -32,16 +32,12 @@ hl.config({
 	dwindle = {
 		preserve_split = true, -- you probably want this
 	},
-})
 
-hl.config({
-	animations = {
-		enabled = true,
-	},
-})
-
-hl.config({
 	misc = {
 		disable_hyprland_logo = true,
 	},
 })
+hl.curve("default", { type = "spring", mass = 1, stiffness = 300, dampening = 100 })
+
+hl.animation({ leaf = "workspaces", enabled = true, speed = 8, spring = "default" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 8, spring = "default", style = "fade" })

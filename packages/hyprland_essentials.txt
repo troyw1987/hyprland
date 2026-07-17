@@ -7,7 +7,6 @@ xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 xdg-user-dirs
 kitty
-spotify-player
 zsh
 zsh-completions
 btop
@@ -60,7 +59,6 @@ slurp
 reflector
 throttled
 lsd
-gocryptfs
 ookla-speedtest-bin
 wavemon
 apple_cursor

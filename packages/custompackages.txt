@@ -4,6 +4,7 @@ libtiff5
 vesktop-bin
 steam
 spotify-player
+gocryptfs
 retroarch
 retroarch-assets-ozone
 retroarch-assets-xmb

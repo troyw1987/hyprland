@@ -11,3 +11,4 @@ retroarch-assets-xmb
 gimp
 thorium-browser-bin
 prismlauncher
+localsend-bin

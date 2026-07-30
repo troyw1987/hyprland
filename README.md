@@ -9,7 +9,7 @@
 ## Installation
 
 1. Start with a minimal `archinstall` (https://wiki.archlinux.org/title/Archinstall)
-2. install yay on it  (https://wiki.archlinux.org/title/AUR_helpers)
+2. install yay on it - https://github.com/Jguer/yay  ( for more info: https://wiki.archlinux.org/title/AUR_helpers)
 3. Git clone this repo, chown this repo, and run the `set-hypr` script.
 4. Follow the prompts, then launch and/or reboot.
 

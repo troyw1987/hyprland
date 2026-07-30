@@ -125,6 +125,11 @@ if [[ $CFG =~ ^["Yy"] ]]; then
 	# Default settings:
 	gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 
+	# Set mpv as default video viewer application
+	for mime in mp4 x-matroska webm x-msvideo quicktime mpeg ogg x-flv x-ms-wmv; do
+		xdg-mime default mpv.desktop video/$mime
+	done
+
 	printf "\nStarting waybar's weather service and timer..."
 	systemctl --user daemon-reload
 	systemctl --user enable --now waybar-weather.timer

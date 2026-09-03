@@ -12,3 +12,4 @@ gimp
 thorium-browser-bin
 prismlauncher
 localsend-bin
+foliate

@@ -19,10 +19,6 @@ hl.config({
 		kb_options = "",
 		kb_rules = "",
 		follow_mouse = 1,
-		touchpad = {
-			natural_scroll = false,
-			disable_while_typing = false,
-		},
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 	},
 })
@@ -30,7 +26,7 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
 	dwindle = {
-		preserve_split = true, -- you probably want this
+		preserve_split = true,
 	},
 
 	misc = {

@@ -106,7 +106,7 @@ Yes, Firefox is a dependancy, and not listed in `custompackages.txt` because I w
 
 They're defined separately in:
 ```
-./packages/custompackages.txt
+./packages/hyprland_essentials.txt
 ```
 
 ## Post-Install
